@@ -1,3 +1,3 @@
 # SuperCounter
 Live demo:
-http://mewcounter.meteor.com
+http://supercounter.meteor.com
