@@ -3,13 +3,13 @@ Counter = new Mongo.Collection("counter")
 if Meteor.isClient
   Template.hello.helpers
     counter: ->
-      Counter.findOne({})
+      Counter.findOne({}, {sort: {createdAt: -1}})
 
   Template.hello.events
     "click button": ->
-      Counter.update({}, {$inc: {num: 1}})
+      Counter.insert({num: Counter.findOne({}, {sort: {createdAt: -1}}).num+1, createdAt: new Date()})
 
 if Meteor.isServer
   Meteor.startup ->
-    Counter.insert({num: 0})
+    Counter.insert({num: 0, createdAt: new Date()})
 
